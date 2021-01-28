@@ -1,5 +1,7 @@
 <?php
 //Criando uma lista de categorias(com um array(php possui tipagem fraca))
+
+session_start();
 $categorias=[];
 $categorias[] = "Infantil";
 $categorias[] = "Adolescente";
@@ -13,21 +15,33 @@ $idade = $_POST['idade'];
 
 if(empty($nome))
 {
-    echo 'O campo para a inserção do nome não pode estar vazio!';
-    return;
+    $_SESSION['mensagem-de-erro'] = 'O campo para a inserção do nome não pode estar vazio!';
+    
+    header("location: pagina.php");
+    die();
 }
-if(strlen($nome) < 3){
-    echo 'O nome deve possuir mais de 3 caracteres';
-    return;
+else if(strlen($nome) < 3){
+    $_SESSION['mensagem-de-erro'] = 'O nome deve possuir mais de 3 caracteres';
+    
+    header("location: pagina.php");
+    die();
 }
-if(strlen($nome)>40){
-    echo 'O nome excede o número de 40 caracteres permitido';
-    return;
+else if(strlen($nome)>40){
+
+    $_SESSION['mensagem-de-erro'] = 'O nome excede o número de 40 caracteres permitido';
+    
+    header("location: pagina.php");
+    die();
+    
 }
-if(!is_numeric($idade))
+else if(!is_numeric($idade))
 {
-    echo 'Informe um número para a idade.';
-    return;
+
+    $_SESSION['mensagem-de-erro'] = 'Informe um número para a idade.';
+    
+    header("location: pagina.php");
+    die();
+
 }
 
 if($idade >= 6 && $idade <= 12)
@@ -35,7 +49,9 @@ if($idade >= 6 && $idade <= 12)
     for($i=0 ; $i <= count($categorias);$i++)
     {
         if($categorias[$i] == 'Infantil'){
-             echo 'O nadador '.$nome. ' compete na categorial infantil';
+            $_SESSION['mensagem-de-sucesso']= 'O nadador '.$nome. ' compete na categorial infantil';
+            header("location: pagina.php");
+            die();
         }      
     }
 }
@@ -44,16 +60,21 @@ else if($idade >= 13 && $idade <= 18)
     for($i=0 ; $i <= count($categorias);$i++)
     {
         if($categorias[$i] == 'Adolescente'){
-             echo 'O nadador '.$nome. ' compete na categorial Adolescente';
+            $_SESSION['mensagem-de-sucesso']= 'O nadador '.$nome. ' compete na categorial Adolescente';
+            header("location: pagina.php");
+            die();
         }      
     }
 }
 else
 {
-    for($i=0 ; $i <= count($categorias);$i++)
+    for($i=0 ; $i <= count($categorias); $i++)
     {
         if($categorias[$i] == "Adulto"){
-             echo 'O nadador '.$nome. ' compete na categorial Adulto';
+            $_SESSION['mensagem-de-sucesso']= 'O nadador '. $nome . ' compete na categorial Adulto';
+             header("location: pagina.php");
+              die();
         }      
     }
 }
+
