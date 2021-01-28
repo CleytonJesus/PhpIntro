@@ -1,40 +1,16 @@
-<?php
-//Criando uma lista de categorias(com um array(php possui tipagem fraca))
-$categorias=[];
-$categorias[] = "Infantil";
-$categorias[] = "Adolescente";
-$categorias[] = "Adulto";
-
-$nome = "Cleyton Jesus";
-$idade = 9;
-
-//var_dump($nome);
-//var_dump($idade);
-
-if($idade >= 6 && $idade <= 12)
-{
-    for($i=0 ; $i <= count($categorias);$i++)
-    {
-        if($categorias[$i] == 'Infantil'){
-             echo 'O nadador '.$nome. ' compete na categorial infantil';
-        }      
-    }
-}
-else if($idade >= 13 && $idade <= 18)
-{
-    for($i=0 ; $i <= count($categorias);$i++)
-    {
-        if($categorias[$i] == 'Adolescente'){
-             echo 'O nadador '.$nome. ' compete na categorial Adolescente';
-        }      
-    }
-}
-else
-{
-    for($i=0 ; $i <= count($categorias);$i++)
-    {
-        if($categorias[$i] == 'Adulto'){
-             echo 'O nadador '.$nome. ' compete na categorial Adulto';
-        }      
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>FORMULÁRIO PARA INSCRIÇÃO DE COMPETIDORES</p>
+    <form action="script.php" method="POST">
+        <p>Seu nome: <input type="text" name="nome"></p>
+        <p>Sua idade: <input type="text" name="idade"></p>
+        <p><input type="submit" value="Enviar dados do competidor"/></p>
+    </form>
+</body>
+</html>
