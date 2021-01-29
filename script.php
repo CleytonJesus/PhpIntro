@@ -13,36 +13,7 @@ $idade = $_POST['idade'];
 //var_dump($nome);
 //var_dump($idade);
 
-if(empty($nome))
-{
-    $_SESSION['mensagem-de-erro'] = 'O campo para a inserção do nome não pode estar vazio!';
-    
-    header("location: pagina.php");
-    die();
-}
-else if(strlen($nome) < 3){
-    $_SESSION['mensagem-de-erro'] = 'O nome deve possuir mais de 3 caracteres';
-    
-    header("location: pagina.php");
-    die();
-}
-else if(strlen($nome)>40){
 
-    $_SESSION['mensagem-de-erro'] = 'O nome excede o número de 40 caracteres permitido';
-    
-    header("location: pagina.php");
-    die();
-    
-}
-else if(!is_numeric($idade))
-{
-
-    $_SESSION['mensagem-de-erro'] = 'Informe um número para a idade.';
-    
-    header("location: pagina.php");
-    die();
-
-}
 
 if($idade >= 6 && $idade <= 12)
 {
