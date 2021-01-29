@@ -1,7 +1,5 @@
 <?php
-    
-    session_start();
-    session_destroy();
+    include "servicos/servicoMensagemSessao.php";
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +14,12 @@
     <form action="script.php" method="POST">
     <?php
         //Operadores ternários(Compôr condições em apenas uma linha).
-        $mensagemDeErro = isset($_SESSION['mensagem-de-erro'])? $_SESSION['mensagem-de-erro'] : '';
+        $mensagemDeSucesso = obterMensagemSucesso();
+        if(!empty($mensagemDeSucesso)){
+            echo $mensagemDeSucesso;
+        }
+
+        $mensagemDeErro = obterMensagemErro();
         if(!empty($mensagemDeErro)){
             echo $mensagemDeErro;
         }
@@ -25,13 +28,5 @@
         <p>Sua idade: <input type="text" name="idade"></p>
         <p><input type="submit" value="Enviar dados do competidor"/></p>
     </form>
-    <h1 style="text-align: center;">
-        <?php
-         $mensagemDeSucesso = isset($_SESSION['mensagem-de-sucesso'])? $_SESSION['mensagem-de-sucesso'] : '';
-         if(!empty($mensagemDeSucesso)){
-             echo $mensagemDeSucesso;
-         }
-        ?>
-    </h1>
 </body>
 </html>
